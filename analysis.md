@@ -130,4 +130,22 @@ export 导出，则是调用 `__webpack_require__.d` 方法（ d 为 define 的�
 
 - [第五部分](@TODO)，最后输出 `module.exports` 属性
 
-###
+### `__webpack_require__` 中的绑定的属性和方法分析
+
+- [m](@TODO): modules ，数组，所有的模块，即前文提到的 modules 参数
+
+- [c](@TODO): cache ，对象，所有已安装的模块
+
+- [d](@TODO): define ，函数，如果输出没有保存到模块的 `exports` 中，则使用 `Object.defineProperty` 将模块的输出保存到已安装模块的 `export` 属性中，会在模块中替换掉 `export` 语句。该函数包含三个参数：
+	
+	- exports: 模块的 `exports` 属性
+
+	- name: 模块输出的代号（名字），默认为 `a` ，从 abcd往下排列
+
+	- getter: 函数，返回模块的输出内容 
+
+- [n](@TODO): 针对 `non-harmony` 模块的输出定义函数做一些兼容（这里我也不太理解）
+
+- [o](@TODO): `Object.prototype.hasOwnProperty` 的 polyfill， 在 `__webpack_require__.d`中的判断是否这个输出是否已绑定到这个模块中用到
+
+- [p](@TODO): 实际上就是配置文件中的 [`output.publicPath`](https://webpack.js.org/configuration/output/#output-publicpath)
