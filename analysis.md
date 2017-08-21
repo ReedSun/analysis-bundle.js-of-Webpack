@@ -62,11 +62,11 @@ export default {
 
 - [第一部分](https://github.com/ReedSun/analysis-bundle.js-of-Webpack/blob/master/dist/bundle.js#L3)，定义一个对象 `installModlues` 来保存 Webpack 已注册的模块。
 
-- [第二部分](https://github.com/ReedSun/analysis-bundle.js-of-Webpack/blob/master/dist/bundle.js#L3)，定义一个函数 `__webpack_require__` 来实现的模块的加载。这里是 Webpack 管理模块的核心。
+- [第二部分](https://github.com/ReedSun/analysis-bundle.js-of-Webpack/blob/master/dist/bundle.js#L6)，定义一个函数 `__webpack_require__` 来实现的模块的加载。这里是 Webpack 管理模块的核心。
 
-- [第三部分](https://github.com/ReedSun/analysis-bundle.js-of-Webpack/blob/master/dist/bundle.js#L33)，在 `__webpack_require__` 这个函数上绑定一些属性。
+- [第三部分](https://github.com/ReedSun/analysis-bundle.js-of-Webpack/blob/master/dist/bundle.js#L31)，在 `__webpack_require__` 这个函数上绑定一些属性。
 
-- [第四部分](https://github.com/ReedSun/analysis-bundle.js-of-Webpack/blob/master/dist/bundle.js#L33)，调用`__webpack_require__`函数，开始加载模块。
+- [第四部分](https://github.com/ReedSun/analysis-bundle.js-of-Webpack/blob/master/dist/bundle.js#L63)，调用`__webpack_require__`函数，开始加载模块。
 
 ### `modules` 参数分析
 
@@ -126,17 +126,17 @@ export 导出，则是调用 `__webpack_require__.d` 方法（ d 为 define 的�
 
 - 执行完立即执行函数后，除了将模块本身的逻辑执行完，也会将模块的输出绑定到 `module.exports` 中
 
-- [第四部分](https://github.com/ReedSun/analysis-bundle.js-of-Webpack/blob/master/dist/bundle.js#L25)，将 `module.l` 设为 `true` 表示已加载
+- [第四部分](https://github.com/ReedSun/analysis-bundle.js-of-Webpack/blob/master/dist/bundle.js#L23)，将 `module.l` 设为 `true` 表示已加载
 
-- [第五部分](https://github.com/ReedSun/analysis-bundle.js-of-Webpack/blob/master/dist/bundle.js#L28)，最后输出 `module.exports` 属性
+- [第五部分](https://github.com/ReedSun/analysis-bundle.js-of-Webpack/blob/master/dist/bundle.js#L26)，最后输出 `module.exports` 属性
 
 ### `__webpack_require__` 中的绑定的属性和方法分析
 
-- [m](https://github.com/ReedSun/analysis-bundle.js-of-Webpack/blob/master/dist/bundle.js#L33): modules ，数组，所有的模块，即前文提到的 modules 参数
+- [m](https://github.com/ReedSun/analysis-bundle.js-of-Webpack/blob/master/dist/bundle.js#L31): modules ，数组，所有的模块，即前文提到的 modules 参数
 
-- [c](https://github.com/ReedSun/analysis-bundle.js-of-Webpack/blob/master/dist/bundle.js#L36): cache ，对象，所有已安装的模块
+- [c](https://github.com/ReedSun/analysis-bundle.js-of-Webpack/blob/master/dist/bundle.js#L34): cache ，对象，所有已安装的模块
 
-- [d](https://github.com/ReedSun/analysis-bundle.js-of-Webpack/blob/master/dist/bundle.js#L39): define ，函数，如果输出没有保存到模块的 `exports` 中，则使用 `Object.defineProperty` 将模块的输出保存到已安装模块的 `export` 属性中，会在模块中替换掉 `export` 语句。该函数包含三个参数：
+- [d](https://github.com/ReedSun/analysis-bundle.js-of-Webpack/blob/master/dist/bundle.js#L37): define ，函数，如果输出没有保存到模块的 `exports` 中，则使用 `Object.defineProperty` 将模块的输出保存到已安装模块的 `export` 属性中，会在模块中替换掉 `export` 语句。该函数包含三个参数：
 	
 	- exports: 模块的 `exports` 属性
 
@@ -144,8 +144,8 @@ export 导出，则是调用 `__webpack_require__.d` 方法（ d 为 define 的�
 
 	- getter: 函数，返回模块的输出内容 
 
-- [n](https://github.com/ReedSun/analysis-bundle.js-of-Webpack/blob/master/dist/bundle.js#L50): 针对 `non-harmony` 模块的输出定义函数做一些兼容（这里我也不太理解）
+- [n](https://github.com/ReedSun/analysis-bundle.js-of-Webpack/blob/master/dist/bundle.js#L48): 针对 `non-harmony` 模块的输出定义函数做一些兼容（这里我也不太理解）
 
-- [o](https://github.com/ReedSun/analysis-bundle.js-of-Webpack/blob/master/dist/bundle.js#L59): `Object.prototype.hasOwnProperty` 的 polyfill， 在 `__webpack_require__.d`中的判断是否这个输出是否已绑定到这个模块中用到
+- [o](https://github.com/ReedSun/analysis-bundle.js-of-Webpack/blob/master/dist/bundle.js#L57): `Object.prototype.hasOwnProperty` 的 polyfill， 在 `__webpack_require__.d`中的判断是否这个输出是否已绑定到这个模块中用到
 
-- [p](https://github.com/ReedSun/analysis-bundle.js-of-Webpack/blob/master/dist/bundle.js#L62): 实际上就是配置文件中的 [`output.publicPath`](https://webpack.js.org/configuration/output/#output-publicpath)
+- [p](https://github.com/ReedSun/analysis-bundle.js-of-Webpack/blob/master/dist/bundle.js#L60): 实际上就是配置文件中的 [`output.publicPath`](https://webpack.js.org/configuration/output/#output-publicpath)
