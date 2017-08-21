@@ -94,9 +94,9 @@ let b2 = {
 
 嗯，这个是一个立即执行函数，在这个立即执行函数定义了三个参数，这三个参数都是在 `__webpack_require__` 中传入的。
 
-import 导入比较简单，将 import 替换为 `__webpack_require__` 就可以导入模块。（详见[`__webpack_require__`函数分析](https://github.com/ReedSun/analysis-bundle.js-of-Webpack/blob/master/analysis.md#__webpack_require__-函数分析)）
+import 导入比较简单，将 import 替换为 `__webpack_require__` 就可以导入模块。（详见[`__webpack_require__`函数分析](https://github.com/ReedSun/analysis-bundle.js-of-Webpack#__webpack_require__-函数分析)）
 
-export 导出，则是调用 `__webpack_require__.d` 方法（ d 为 define 的简写），将输出的变量或方法绑定到模块（最终会保存到 `installModules[modulesId].export` 中）中 。（详见 [`__webpack_require__` 中的绑定的属性和方法分析](https://github.com/ReedSun/analysis-bundle.js-of-Webpack/blob/master/analysis.md#__webpack_require__-中的绑定的属性和方法分析)）
+export 导出，则是调用 `__webpack_require__.d` 方法（ d 为 define 的简写），将输出的变量或方法绑定到模块（最终会保存到 `installModules[modulesId].export` 中）中 。（详见 [`__webpack_require__` 中的绑定的属性和方法分析](https://github.com/ReedSun/analysis-bundle.js-of-Webpack#__webpack_require__-中的绑定的属性和方法分析)）
 
 注意，我们在[源代码](https://github.com/ReedSun/analysis-bundle.js-of-Webpack/blob/master/b.js#L11)中还导出了一个并没有被其他模块导入的 `b3` 属性，但是这个属性并没有出现在[打包后的文件]()中，这就是 webpack 的特性 [Tree Shaking](https://webpack.js.org/guides/tree-shaking/) 的功劳了，这个特性会把我们导出但没使用的部分不打包进 `bundle` 中，从而精简代码。
 
